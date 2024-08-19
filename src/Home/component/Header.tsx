@@ -1,4 +1,4 @@
-import React ,{useEffect,useState}from 'react'
+import React from 'react'
 import './scss/Header.scss'
 
 import { UserPlayer } from '../interface/interfacer'
@@ -8,7 +8,7 @@ interface Props{
 }
 
 const Header:React.FC<Props> = (props) => {
-  const {listPlayer} = props;
+  const listPlayer = props
   const itemPlayer : UserPlayer[] = JSON.parse(localStorage.getItem('listPlayer') || '[]') 
   return (
   <header>
@@ -18,6 +18,10 @@ const Header:React.FC<Props> = (props) => {
           </span>
           <br />
           <span>
+            {/* reduce là một hàm callback, dùng để duyệt qua từng phần tử
+                acc là biến chứa giá trị tích lũy qua các lần callback, giá trị ban đầu là 0
+                mỗi lần duyện lấy qua một item:<UserPlayer> và cộng giá trị point
+            */}
             Total Point : {itemPlayer.reduce((acc,item)=>acc+item.point,0)}
           </span>
         </div>
